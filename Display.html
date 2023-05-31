@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration Form</title>
+  <style>
+    .container {
+      width: 300px;
+      margin: 0 auto;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #0919f3;
+      color: #ffffff;
+      border: none;
+    }
+    input[type="Reset"] {
+        width: 60%;
+        padding: 10px;
+        background-color: #ef1338;
+        color: #fff;
+        border: none;
+      }
+      h2{
+        background: #09f3b5;
+        text-align: center;
+        position: relative;
+        top: 90px;
+      }
+      #registrationForm{
+        position: relative;
+        right: 110%;
+        top: 150px;
+        font-size: 25px;
+      }
+      #registrationMessage{
+        position: relative;
+        left: 110%;
+        bottom: 150px;
+        font-size: 30px;
+      }
+      
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Student Enrollment Form</h2>
+    <form id="registrationForm">
+        <table>
+            <tr>
+                <td>Name:</td>
+                <td><input style="width: 230px;" class="input" type="text" placeholder="Name" id="nameInput" required></td>
+    </tr>
+    <tr>
+        <td>Email:</td>
+        <td><input type="email" style="width: 230px;" placeholder="Email" id="emailInput" required></td></tr>
+        <tr>
+            <td>Website:</td>
+            <td><input type="text" style="width: 230px;" placeholder="Website" id="WebsiteInput" required></td>
+    </tr>
+    <tr>
+        <td>Image Link:</td>
+        <td><input type="text" style="width: 230px;" placeholder="Image Link" id="ImageInput" required></td>
+    </tr>
+    <tr>
+        <td>Gender:</td>
+        <td><input type="radio" name="gender" id="genderInput" value="Male" >
+            <label for="Male">Male</label>
+            <input type="radio" name="gender" id="genderInput" value="Female" >
+            <label for="Female">Female</label>
+        </td>
+    </tr>
+    <tr>
+        <td>Skills:</td>
+        <td><input type="checkbox" name="skills" id="skillsInput" value="Java" >
+            <label for="Java">Java</label>
+            <input type="checkbox" name="skills" id="skillsInput" value="HTML" >
+            <label for="HTML">HTML</label>
+            <input type="checkbox" name="skills" id="skillsInput" value="CSS" >
+            <label for="CSS">CSS</label>
+        </td>
+    </tr>
+    <tr>
+      <td><input type="submit" value="Enroll Student"></td>
+      <td><input type="Reset" value="Clear"></td>
+    </tr>
+    </table>
+    </form>
+    <div id="registrationMessage"></div>
+    
+  </div>
+
+  <script>
+    
+    document.getElementById("registrationForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      
+      var name = document.getElementById("nameInput").value;
+      var email = document.getElementById("emailInput").value;
+      var website = document.getElementById("WebsiteInput").value;
+      var image = document.getElementById("ImageInput").value;
+      var gender=document.querySelector('input[name="gender"]:checked').value;
+      document.getElementById("registrationMessage").innerHTML=gender;
+      var skills = [];
+      var checkboxes = document.querySelectorAll('input[name="skills"]:checked');
+      for (var i = 0; i < checkboxes.length; i++) {
+        skills.push(checkboxes[i].value);
+      }
+      document.getElementById("registrationMessage").innerHTML = skills.join(', ');
+      var message = "Name: " + name + "<br>Email: " + email + "<br>Website: " + website+"<br>Image Link:"+image+"<br>Gender:"+gender
+      +"<br>Skills:"+skills;
+      document.getElementById("registrationMessage").innerHTML = message;
+    });
+  </script>
+</body>
+</html>
